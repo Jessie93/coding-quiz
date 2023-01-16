@@ -37,7 +37,7 @@ function startQuiz() {
   startScreen.setAttribute("class", "hide");
   questionsEl.removeAttribute("class");
   // start timer
-  timerId = setInterval(clockTick, 1000);
+  timerId = setInterval(countdown, 1000);
   timerEl.textContent = time;
   getQuestion();
 }
@@ -45,9 +45,8 @@ function startQuiz() {
 
 // Function to get the questions 
 function getQuestion() {
-  // get current question object from array
   var currentQuestion = questions[currentQuestionIndex];
-  // update title with current question
+  // update question with current question
   titleEl.textContent = currentQuestion.questions;
   // clear out any old question choices
   choicesEl.innerHTML = "";
@@ -70,8 +69,7 @@ function getQuestion() {
 // click on question answer either generate new question or end quiz if final question, and deduct time for answering wrong
 function questionClick() {
 
-  // 'this.value' shows if the answer if correct or not. need to view why this works and text content doesnt 
-  
+  // 'this.value' shows if the answer if correct or not. need to view why this works and textcontent doesnt work
   if (this.value !== questions[currentQuestionIndex].answer) {
     // penalty time
     time -= 15;
@@ -110,7 +108,7 @@ function quizEnd() {
 
 
 
-function clockTick() {
+function countdown() {
   time--;
   timerEl.textContent = time;
   if (time <= 0) {
@@ -136,9 +134,8 @@ function saveHighscore() {
   }
 }
 
-
-function checkForEnter(event) {
-  // "13" represents the enter key
+// Function lets you press enter on your keyboard 
+function pressEnter(event) {
   if (event.key === "Enter") {
     saveHighscore();
   }
@@ -147,4 +144,5 @@ function checkForEnter(event) {
 // submit initials
 submitBtn.onclick = saveHighscore;
 
-initialsEl.onkeyup = checkForEnter;
+// onkeyup = when the key goes up the action happens
+initialsEl.onkeyup = pressEnter;
