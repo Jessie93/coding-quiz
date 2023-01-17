@@ -12,7 +12,8 @@ function printHighscores() {
   
       // display on page
       var highscoreA = document.getElementById("highscores");
-      highscoreA.appendChild(list);
+      // adding a new element to the HTML file
+      highscoreA.innerHTML += list.outerHTML;
     });
   }
   
