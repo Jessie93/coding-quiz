@@ -1,28 +1,28 @@
-
+// viewed many hours of @learnwithleon (on yourtube) he was very helpful for this task
 var currentQuestionIndex = 0;
 var time = 60;
 var timerId;
 var penalty = 10;
 
 // variables to reference DOM elements
-var questionsEl = document.getElementById("questions");
-var timerEl = document.getElementById("time");
-var choicesEl = document.getElementById("choices");
+var questionsA = document.getElementById("questions");
+var timerA = document.getElementById("time");
+var choicesA = document.getElementById("choices");
 var submitBtn = document.getElementById("submit");
 var startBtn = document.getElementById("start");
-var initialsEl = document.getElementById("initials");
-var feedbackEl = document.getElementById("feedback");
+var initialsA = document.getElementById("initials");
+var feedbackA = document.getElementById("feedback");
 var endScreen = document.getElementById("end-screen");
 var startScreen = document.getElementById("start-screen");
-var finalScoreEl = document.getElementById("final-score");
-var titleEl = document.getElementById("question-title");
+var finalScore = document.getElementById("final-score");
+var questionTitle = document.getElementById("question-title");
 
 
 
-//  Function that takes time of the clock 
+//  Function that takes time of the clock. it should reduce the time by 1 second. 
 function tick() {
     time--;
-    timerEl.textContent = time;
+    timerA.textContent = time;
       if (time <= 0) {
       quizEnd();
     }
@@ -35,10 +35,10 @@ startBtn.onclick = startQuiz;
 function startQuiz() {
   // hide start screen
   startScreen.setAttribute("class", "hide");
-  questionsEl.removeAttribute("class");
+  questionsA.removeAttribute("class");
   // start timer
   timerId = setInterval(countdown, 1000);
-  timerEl.textContent = time;
+  timerA.textContent = time;
   getQuestion();
 }
 
@@ -47,9 +47,9 @@ function startQuiz() {
 function getQuestion() {
   var currentQuestion = questions[currentQuestionIndex];
   // update question with current question
-  titleEl.textContent = currentQuestion.questions;
+  questionTitle.textContent = currentQuestion.questions;
   // clear out any old question choices
-  choicesEl.innerHTML = "";
+  choicesA.innerHTML = "";
   // loop to go over the choices
   currentQuestion.choices.forEach(function(choice, i) {
     // Code below lets you create a new button for each choice
@@ -60,7 +60,7 @@ function getQuestion() {
     optionBtn.textContent = i + 1 + ". " + choice;
     // attach click event listener to each choice
     optionBtn.onclick = questionClick;
-    choicesEl.appendChild(optionBtn);
+    choicesA.appendChild(optionBtn);
   });
 }
 // below code is to add audio to the quiz
@@ -78,17 +78,17 @@ function questionClick() {
       time = 0;
     }
     // code shows new time on screen along side if the answer is right or wrong
-    timerEl.textContent = time;
-    feedbackEl.textContent = "Wrong!";
+    timerA.textContent = time;
+    feedbackA.textContent = "Wrong!";
     //below lets the audio play when the right or wrong button is pressed
     incorrectAudio.play();
   } else {
-    feedbackEl.textContent = "Correct!";
+    feedbackA.textContent = "Correct!";
     correctAudio.play();
   }
-  feedbackEl.setAttribute("class", "feedback");
+  feedbackA.setAttribute("class", "feedback");
   setTimeout(function() {
-    feedbackEl.setAttribute("class", "feedback hide");
+    feedbackA.setAttribute("class", "feedback hide");
   }, 1000);
   // moves onto the next question
   currentQuestionIndex++;
@@ -106,24 +106,24 @@ function quizEnd() {
   clearInterval(timerId);
   endScreen.removeAttribute("class");
   // final score
-  finalScoreEl.textContent = time;
-  questionsEl.setAttribute("class", "hide");
+  finalScore.textContent = time;
+  questionsA.setAttribute("class", "hide");
 }
 
 
 
 function countdown() {
   time--;
-  timerEl.textContent = time;
+  timerA.textContent = time;
   if (time <= 0) {
     quizEnd();
   }
 }
 
 // Function to save the high scores
-function saveHighscore() {
+function saveScore() {
   // box to insert initials to be saved in localstorage
-  var initials = initialsEl.value.trim();
+  var initials = initialsA.value.trim();
   if (initials !== "") {
     var highscores =
       JSON.parse(window.localStorage.getItem("highscores")) || [];
@@ -141,12 +141,12 @@ function saveHighscore() {
 // Function lets you press enter on your keyboard 
 function pressEnter(event) {
   if (event.key === "Enter") {
-    saveHighscore();
+    saveScore();
   }
 }
 
 // submit initials
-submitBtn.onclick = saveHighscore;
+submitBtn.onclick = saveScore;
 
 // onkeyup = when the key goes up the action happens
-initialsEl.onkeyup = pressEnter;
+initialsA.onkeyup = pressEnter;

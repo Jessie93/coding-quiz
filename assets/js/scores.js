@@ -7,12 +7,12 @@ function printHighscores() {
   
     highscores.forEach(function(score) {
       // create list for each highscore. Will look into how to put them in highest to lowest
-      var liTag = document.createElement("li");
-      liTag.textContent = score.initials + " - " + score.score;
+      var list = document.createElement("li");
+      list.textContent = score.initials + " - " + score.score;
   
       // display on page
-      var highscoreEl = document.getElementById("highscores");
-      highscoreEl.appendChild(liTag);
+      var highscoreA = document.getElementById("highscores");
+      highscoreA.appendChild(list);
     });
   }
   
