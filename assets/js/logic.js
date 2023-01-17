@@ -73,7 +73,7 @@ function questionClick() {
   // 'this.value' shows if the answer if correct or not. need to view why this works and textcontent doesnt work
   if (this.value !== questions[currentQuestionIndex].answer) {
     // penalty time
-    time -= 15;
+    time -= 10;
     if (time < 0) {
       time = 0;
     }
