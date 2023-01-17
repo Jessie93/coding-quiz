@@ -53,18 +53,19 @@ function getQuestion() {
   // loop to go over the choices
   currentQuestion.choices.forEach(function(choice, i) {
     // Code below lets you create a new button for each choice
-    var choiceNode = document.createElement("button");
-    //need class here - without it it is attributing choices on the button when it needs to be on the class.
-    choiceNode.setAttribute("class", "choice");
-    choiceNode.setAttribute("value", choice);
-    choiceNode.textContent = i + 1 + ". " + choice;
+    var optionBtn = document.createElement("button");
+    //need 'class' here - without it it is attributing choices on the button when it needs to be on the class.
+    optionBtn.setAttribute("class", "choice");
+    optionBtn.setAttribute("value", choice);
+    optionBtn.textContent = i + 1 + ". " + choice;
     // attach click event listener to each choice
-    choiceNode.onclick = questionClick;
-    choicesEl.appendChild(choiceNode);
+    optionBtn.onclick = questionClick;
+    choicesEl.appendChild(optionBtn);
   });
 }
-
-
+// below code is to add audio to the quiz
+var correctAudio = new Audio('./assets/sfx/correct.wav')
+var incorrectAudio = new Audio('./assets/sfx/incorrect.wav')
 // Function to see if answer are correct
 // click on question answer either generate new question or end quiz if final question, and deduct time for answering wrong
 function questionClick() {
@@ -79,8 +80,11 @@ function questionClick() {
     // code shows new time on screen along side if the answer is right or wrong
     timerEl.textContent = time;
     feedbackEl.textContent = "Wrong!";
+    //below lets the audio play when the right or wrong button is pressed
+    incorrectAudio.play();
   } else {
     feedbackEl.textContent = "Correct!";
+    correctAudio.play();
   }
   feedbackEl.setAttribute("class", "feedback");
   setTimeout(function() {
