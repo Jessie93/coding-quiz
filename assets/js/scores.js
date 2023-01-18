@@ -2,7 +2,7 @@
 // Highscores function
 // this should get the highscores from localstorge
 function printHighscores() {
-    var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+    var highscores = JSON.parse(window.localStorage.getItem("highscores"));
 
   
     highscores.forEach(function(score) {
