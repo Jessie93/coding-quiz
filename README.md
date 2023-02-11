@@ -15,9 +15,9 @@ Create a code quiz that contains the following requirements:
 
 ## Technologies Used
 This project was created using 
-*JavaScript
-*HTML
-*CSS
+* JavaScript
+* HTML
+* CSS
 
 
 ## Screenshot
@@ -25,13 +25,18 @@ Once deployed you can see the web application in your browser. It should look li
 
 ![coding quiz](/assets/08-web-apis-challenge-demo.gif)
 
+
+# Installation
+
+## Clone Repository 
+Git clone git@github.com:Jessie93/coding-quiz.git
+#
+
 ## Deployed Page
 Link to the deployed site
 https://jessie93.github.io/coding-quiz/
 
-
-
-## License 
+# License 
 MIT License
 
 Copyright (c) [2023] [Jessica Stephenson]
