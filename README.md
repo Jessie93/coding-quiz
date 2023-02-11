@@ -32,6 +32,10 @@ To clone the repository, run the following command:
 
 Git clone git@github.com:Jessie93/coding-quiz.git
 
+To run the application, follow these steps:
+
+* Clone the repository using the command git clone git@github.com:Jessie93/coding-quiz.git
+* Open the index.html file in your browser to view the application.
 
 ## Deployed Page
 Link to the deployed site
